@@ -14,14 +14,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
      
         // Isertion sort
-        var array: [Int] = [9,3,22,6,6,8,10,1989]
-        for index in 1..<array.count{
-            var key = array.remove(at: index)
-            var  j = index - 1
-            while j >= 0 && array[j] > key{
-                j -= 1
-            }
-            array.insert(key, at: j+1)
+        var array = [9,3,22,6,6,8,10,1989]
+
+        func quickSortHoare(_ items: inout [Int], low: Int, high: Int) {
+            guard low < high else { return }
+            
+            let p = partitionHoare(&items, low: low, high: high)
+            
+            quickSortHoare(&items, low: low, high: p)
+            quickSortHoare(&items, low: p+1, high: high)
+
+            
         }
-}
+        func partitionHoare(_ items: inout [Int], low: Int, high: Int) -> Int{
+            
+            let pivot = items[low]
+            var i = low - 1
+            var j = high + 1
+            
+            while true{
+                repeat { i += 1 } while items[i] < pivot
+                repeat { j -= 1 } while items[j] > pivot
+                guard i < j else { return j}
+                items.swapAt(i, j)
+                
+            }
+        }
+    
+        quickSortHoare(&array, low: 0, high: array.count - 1)
+        print(array)
+    }
 }

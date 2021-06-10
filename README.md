@@ -26,7 +26,7 @@ print(array)
 
 ###  <a name = "bubble-sort"></a>Сортировка пузырьком
 
-```
+``` swift
 public func bubbleSort<Element>(_ array: inout [Element])
  where Element: Comparable {
  // 1

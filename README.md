@@ -27,17 +27,28 @@ print(array)
 ###  <a name = "bubble-sort"></a>Сортировка пузырьком
 
 ```
-array = [9,3,22,6,6,8,10,1989]
- for index in 0..<array.count{
-      	for j in 1..<array.count{
-         	if array[j-1] > array[j]{
-             var temp = array[j-1]
-             array[j-1] = array[j]
-             array[j] = temp
-       }
-    }
+public func bubbleSort<Element>(_ array: inout [Element])
+ where Element: Comparable {
+ // 1
+ guard array.count >= 2 else {
+ return
+ }
+ // 2
+ for end in (1..<array.count).reversed() {
+ var swapped = false
+ // 3
+ for current in 0..<end {
+ if array[current] > array[current + 1] {
+ array.swapAt(current, current + 1)
+ swapped = true
+ }
+ }
+ // 4
+ if !swapped {
+ return
+ }
+ }
 }
-print(array)
 ```
 ###  <a name = "selection-sort"></a>Сортировка выбором
 
